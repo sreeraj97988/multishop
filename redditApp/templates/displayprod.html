@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="col-lg-10 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Product table</h4>
+                <div class="table-responsive pt-3">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+
+                                <th>
+                                    category name
+                                </th>
+                                <th>
+                                     prroduct name
+                                </th>
+                                <th>
+                                 price
+                                </th>
+                              <th>
+                                 product description
+                                </th>
+                              <th>
+                                 Brand
+                                </th>
+                              <th>
+                                 Image
+                                </th>
+                                <th>
+                                    Edit
+                                </th>
+                                <th>
+                                    Delete
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in data %}
+                            <tr>
+                                <td>
+                                    {{i.Category}}
+                                </td>
+                                <td>
+                                  {{i.Product_name}}
+                                </td>
+                                <td>
+                                  {{i.Price}}
+                                </td>
+                                <td>
+                                  {{i.Description}}
+                                </td>
+                                <td>
+                                  {{i.Brand}}
+                                </td>
+
+                               <td>
+                                    <img src="{{i.product_img.url}}" >
+                                </td>
+                                 <td>
+                                     <form action="{% url 'editpro' dataid=i.id %}">
+                                        <button type="submit" class="btn btn-primary">Edit</button>
+                                     </form>
+                                 </td>
+                                <td>
+                                     <form action="{% url 'prodeletefn' dataid=i.id %}">
+
+                                        <button type="submit" class="btn btn-primary">Delete</button>
+
+                                </form>
+                                </td>
+                            </tr>
+                       {% endfor%}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+{% endblock %}

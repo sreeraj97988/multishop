@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="col-lg-10 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Category table</h4>
+                <div class="table-responsive pt-3">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                               
+                                <th>
+                                    catogory name
+                                </th>
+                                <th>
+                                       category description
+
+                                </th>
+                                <th>
+                                     category image
+                                </th>
+                                <th>
+                                    Edit
+                                </th>
+                                <th>
+                                    Delete
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in data %}
+                            <tr>
+                                <td>
+                                    {{i.category}}
+                                </td>
+                                <td>
+                                  {{i.descriptions}}
+                                </td>
+                               <td>
+                                    <img src="{{i.category_img.url}}" >
+                                </td> 
+                                <form action="{% url 'editpage' dataid=i.id %}">
+                                    <td>
+                                        <button type="submit" class="btn btn-primary">Edit</button>
+                                    </td>
+                                </form>
+                                     <form action="{% url 'catdeletefn' dataid=i.id %}">
+                                    <td>
+                                        <button type="submit" class="btn btn-primary">Delete</button>
+                                    </td>
+                                </form>
+                            </tr>
+                       {% endfor%}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+{% endblock %}
